@@ -1,0 +1,78 @@
+<div class="text-center">
+  <h2>Order Management</h2>
+  <h6 *ngIf="orderIdToUpdate; else create">
+    Update Order for Id: {{orderIdToUpdate}}
+  </h6>
+  <ng-template #create>
+    <h4> Create New Order </h4>
+  </ng-template>
+  <div>
+    <form [formGroup]="orderForm" (ngSubmit)=" onOrderFormSubmit()">
+      <table>
+        <tr>
+          <td>Enter Name</td>
+          <td><input formControlName="name">
+            <label *ngIf="orderForm.get('name').invalid && processValidation" [ngClass]="'error'"> Name is
+              required.
+            </label>
+          </td>
+        </tr>
+        <tr>
+          <td>Item Name</td>
+          <td><input formControlName="item_name">
+            <label *ngIf="orderForm.get('item_name').invalid && processValidation" [ngClass]="'error'"> Item Name is
+              required. </label>
+          </td>
+        </tr>
+        <tr>
+          <td>Enter Price</td>
+          <td><input formControlName="price">
+            <label *ngIf="orderForm.get('price').invalid && processValidation" [ngClass]="'error'"> Price is
+              required. </label>
+          </td>
+        </tr>
+        <tr>
+          <td>Enter Quantity</td>
+          <td><input formControlName="quantity">
+            <label *ngIf="orderForm.get('quantity').invalid && processValidation" [ngClass]="'error'"> Quantity is
+              required. </label>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <button *ngIf="!orderIdToUpdate">CREATE</button>
+            <button *ngIf="orderIdToUpdate">UPDATE</button>
+            <button (click)="backToCreateOrder()" *ngIf="orderIdToUpdate">Go Back</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+    <br />
+    <div *ngIf="statusCode; else processing">
+    </div>
+    <ng-template #processing>
+      <img *ngIf="requestProcessing" src="../assets/images/loading.gif">
+    </ng-template>
+  </div>
+  <h4>Order Details</h4>
+  <table>
+    <tr>
+      <th> Id</th>
+      <th>Name</th>
+      <th>Item Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let order of allOrders">
+      <td>{{order.id}}</td>
+      <td>{{order.name}}</td>
+      <td>{{order.item_name}}</td>
+      <td>{{order.price}}</td>
+      <td>{{order.quantity}}</td>
+      <td><button type="button" (click)="loadOrderToEdit(order.id)">Edit</button> </td>
+      <td><button type="button" (click)="deleteOrder(order.id)">Delete</button></td>
+    </tr>
+  </table>
+</div>
