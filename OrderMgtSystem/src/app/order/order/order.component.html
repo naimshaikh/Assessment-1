@@ -26,14 +26,14 @@
         </tr>
         <tr>
           <td>Enter Price</td>
-          <td><input formControlName="price">
+          <td><input type="number" formControlName="price">
             <label *ngIf="orderForm.get('price').invalid && processValidation" [ngClass]="'error'"> Price is
               required. </label>
           </td>
         </tr>
         <tr>
           <td>Enter Quantity</td>
-          <td><input formControlName="quantity">
+          <td><input type="number" formControlName="quantity">
             <label *ngIf="orderForm.get('quantity').invalid && processValidation" [ngClass]="'error'"> Quantity is
               required. </label>
           </td>
@@ -48,31 +48,25 @@
       </table>
     </form>
     <br />
-    <div *ngIf="statusCode; else processing">
-    </div>
-    <ng-template #processing>
-      <img *ngIf="requestProcessing" src="../assets/images/loading.gif">
-    </ng-template>
+    <h4>Order Details</h4>
+    <table>
+      <tr>
+        <th> Id</th>
+        <th>Name</th>
+        <th>Item Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let order of allOrders">
+        <td>{{order.id}}</td>
+        <td>{{order.name}}</td>
+        <td>{{order.item_name}}</td>
+        <td>{{order.price}}</td>
+        <td>{{order.quantity}}</td>
+        <td><button type="button" (click)="loadOrderToEdit(order.id)">Edit</button> </td>
+        <td><button type="button" (click)="deleteOrder(order.id)">Delete</button></td>
+      </tr>
+    </table>
   </div>
-  <h4>Order Details</h4>
-  <table>
-    <tr>
-      <th> Id</th>
-      <th>Name</th>
-      <th>Item Name</th>
-      <th>Price</th>
-      <th>Quantity</th>
-      <th></th>
-      <th></th>
-    </tr>
-    <tr *ngFor="let order of allOrders">
-      <td>{{order.id}}</td>
-      <td>{{order.name}}</td>
-      <td>{{order.item_name}}</td>
-      <td>{{order.price}}</td>
-      <td>{{order.quantity}}</td>
-      <td><button type="button" (click)="loadOrderToEdit(order.id)">Edit</button> </td>
-      <td><button type="button" (click)="deleteOrder(order.id)">Delete</button></td>
-    </tr>
-  </table>
-</div>

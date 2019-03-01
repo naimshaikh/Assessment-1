@@ -19,7 +19,6 @@ export class OrderComponent implements OnInit {
    */
   public orderForm: FormGroup;
   allOrders: Order[];
-  requestProcessing = false;
   orderIdToUpdate = null;
   processValidation = false;
 
@@ -65,25 +64,14 @@ export class OrderComponent implements OnInit {
       return; // Validation failed, exit from method.
     }
     // Form is valid, now perform create or update
-    this.preProcess();
     const order = this.orderForm.value;
     if (this.orderIdToUpdate === null) {
-      // Generate order id then create order
-      this.orderService.getAllOrders()
-        .subscribe(orders => {
-          // Generate order id
-          const maxIndex = orders.length - 1;
-          const orderWithMaxIndex = orders[maxIndex];
-          const orderId = orderWithMaxIndex.id + 1;
-          order.id = orderId;
-          // Create order
-          this.orderService.createOrder(order)
-            .subscribe(() => {
-              this.getAllOrders();
-              this.backToCreateOrder();
-            },
-            );
-        });
+      this.orderService.createOrder(order)
+        .subscribe(() => {
+          this.getAllOrders();
+          this.backToCreateOrder();
+        },
+        );
     } else {
       // Handle update order
       order.id = this.orderIdToUpdate;
@@ -100,7 +88,6 @@ export class OrderComponent implements OnInit {
    */
 
   loadOrderToEdit(orderId: string) {
-    this.preProcess();
     this.orderService.getOrderById(orderId)
       .subscribe(order => {
         console.log('data :', order);
@@ -111,7 +98,6 @@ export class OrderComponent implements OnInit {
         this.orderForm.controls['price'].setValue(order.price);
         this.orderForm.controls['quantity'].setValue(order.quantity);
         this.processValidation = true;
-        this.requestProcessing = false;
 
       });
   }
@@ -120,19 +106,14 @@ export class OrderComponent implements OnInit {
    * @param orderId - Delete record using order id
    */
   deleteOrder(orderId: string) {
-    this.preProcess();
+    // this.preProcess();
     this.orderService.deleteOrderById(orderId)
       .subscribe(() => {
         this.getAllOrders();
         this.backToCreateOrder();
       });
   }
-  /**
-   * Perform preliminary processing
-   */
-  preProcess() {
-    this.requestProcessing = true;
-  }
+
   /**
    * Go back from update to create
    */

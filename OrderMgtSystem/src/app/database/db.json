@@ -1,25 +1,25 @@
 {
   "order": [
     {
-      "name": "Naim",
-      "item_name": "pendrive",
-      "price": 500,
-      "quantity": "1",
-      "id": 1
-    },
-    {
-      "name": "Gaurang  Valia",
+      "name": "Rayhan",
       "item_name": "TV",
-      "price": "50000",
-      "quantity": "1",
+      "price": 30000,
+      "quantity": 3,
       "id": 2
     },
     {
-      "name": "Rayhan kasli",
-      "item_name": "Mobile",
-      "price": "15000",
-      "quantity": "1",
+      "name": "Naim Shaikh",
+      "item_name": "Pendrive",
+      "price": 500,
+      "quantity": 2,
       "id": 3
+    },
+    {
+      "name": "Gaurang Valia",
+      "item_name": "Watch",
+      "price": 1000,
+      "quantity": 2,
+      "id": 4
     }
   ]
 }
