@@ -1,25 +1,18 @@
 {
   "order": [
     {
-      "name": "Rayhan",
-      "item_name": "TV",
-      "price": 30000,
-      "quantity": 3,
+      "name": "Rayhan Kasli",
+      "item_name": "Computer",
+      "price": 50000,
+      "quantity": 2,
       "id": 2
     },
     {
       "name": "Naim Shaikh",
-      "item_name": "Pendrive",
-      "price": 500,
-      "quantity": 2,
+      "item_name": "TV",
+      "price": 30000,
+      "quantity": 1,
       "id": 3
-    },
-    {
-      "name": "Gaurang Valia",
-      "item_name": "Watch",
-      "price": 1000,
-      "quantity": 2,
-      "id": 4
     }
   ]
 }

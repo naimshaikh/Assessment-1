@@ -87,7 +87,7 @@ export class OrderComponent implements OnInit {
    * @param orderId - Update record using order id
    */
 
-  loadOrderToEdit(orderId: string) {
+  loadOrderToEdit(orderId: number) {
     this.orderService.getOrderById(orderId)
       .subscribe(order => {
         console.log('data :', order);
@@ -105,8 +105,9 @@ export class OrderComponent implements OnInit {
    * Deletes order
    * @param orderId - Delete record using order id
    */
-  deleteOrder(orderId: string) {
-        this.orderService.deleteOrderById(orderId)
+  deleteOrder(orderId: number) {
+    // this.preProcess();
+    this.orderService.deleteOrderById(orderId)
       .subscribe(() => {
         this.getAllOrders();
         this.backToCreateOrder();
