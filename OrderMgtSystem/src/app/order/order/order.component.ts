@@ -106,8 +106,7 @@ export class OrderComponent implements OnInit {
    * @param orderId - Delete record using order id
    */
   deleteOrder(orderId: string) {
-    // this.preProcess();
-    this.orderService.deleteOrderById(orderId)
+        this.orderService.deleteOrderById(orderId)
       .subscribe(() => {
         this.getAllOrders();
         this.backToCreateOrder();
