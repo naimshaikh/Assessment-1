@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Order } from './order.model';
 import { Observable } from 'rxjs/Observable';
+/*---------------------------------------------------------------*/
+import { Order } from './order.model';
+
 /**
    *  Inject HTTP headers are is used for content type
   */
